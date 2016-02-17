@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Chance's Favorite Movies</title>
+
+    <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap-theme.min.css">
+    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <style type="text/css" media="screen">
+        body {
+            padding-top: 80px;
+        }
+        #trailer .modal-dialog {
+            margin-top: 200px;
+            width: 640px;
+            height: 480px;
+        }
+        .hanging-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            z-index: 9001;
+        }
+        #trailer-video {
+            width: 100%;
+            height: 100%;
+        }
+        .movie-tile {
+            margin-bottom: 20px;
+            padding-top: 20px;
+        }
+        .movie-tile:hover {
+            background-color: #EEE;
+            cursor: pointer;
+        }
+        .scale-media {
+            padding-bottom: 56.25%;
+            position: relative;
+        }
+        .scale-media iframe {
+            border: none;
+            height: 100%;
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            background-color: white;
+        }
+    </style>
+    <script type="text/javascript" charset="utf-8">
+        // Pause the video when the modal is closed
+        $(document).on('click', '.hanging-close, .modal-backdrop, .modal', function (event) {
+            // Remove the src so the player itself gets removed, as this is the only
+            // reliable way to ensure the video stops playing in IE
+            $("#trailer-video-container").empty();
+        });
+        // Start playing the video whenever the trailer modal is opened
+        $(document).on('click', '.movie-tile', function (event) {
+            var trailerYouTubeId = $(this).attr('data-trailer-youtube-id')
+            var sourceUrl = 'http://www.youtube.com/embed/' + trailerYouTubeId + '?autoplay=1&html5=1';
+            $("#trailer-video-container").empty().append($("<iframe></iframe>", {
+              'id': 'trailer-video',
+              'type': 'text-html',
+              'src': sourceUrl,
+              'frameborder': 0
+            }));
+        });
+        // When the webpage loads, a movie animation will appear
+        $(document).ready(function () {
+          $('.movie-tile').hide().first().show("fast", function showNext() {
+            $(this).next("div").show("fast", showNext);
+          });
+        });
+    </script>
+</head>
+
+  <body>
+    <!-- Trailer Video Modal -->
+    <div class="modal" id="trailer">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <a href="#" class="hanging-close" data-dismiss="modal" aria-hidden="true">
+            <img src="https://lh5.ggpht.com/v4-628SilF0HtHuHdu5EzxD7WRqOrrTIDi_MhEG6_qkNtUK5Wg7KPkofp_VJoF7RS2LhxwEFCO1ICHZlc-o_=s0#w=24&h=24"/>
+          </a>
+          <div class="scale-media" id="trailer-video-container">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Page Content -->
+    <div class="container">
+      <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Chance's Favorite Movie Trailers</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="tapaliUKxeA" data-toggle="modal" data-target="#trailer">
+    <img src="http://goo.gl/74MqGJ" width="220" height="342">
+    <h2>The Wolf of Wall Street</h2>
+    <p>180 minutes</p>
+    <p style="text-align:justify">In 1987, Jordan Belfort (Leonardo DiCaprio) takes an entry-level job at a Wall Street brokerage firm. By the early 1990s, while still in his 20s, Belfort founds his own firm, Stratton Oakmont. Together with his trusted lieutenant (Jonah Hill) and a merry band of brokers, Belfort makes a huge fortune by defrauding wealthy investors out of millions. However, while Belfort and his cronies partake in a hedonistic brew of sex, drugs and thrills, the SEC and the FBI close in on his empire of excess.</p>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="YPz6Dw1iPwY" data-toggle="modal" data-target="#trailer">
+    <img src="http://goo.gl/ldxBzV" width="220" height="342">
+    <h2>The Revenant</h2>
+    <p>156 minutes</p>
+    <p style="text-align:justify">While exploring the uncharted wilderness in 1823, legendary frontiersman Hugh Glass (Leonardo DiCaprio) sustains injuries from a brutal bear attack. When his hunting team leaves him for dead, Glass must utilize his survival skills to find a way back home to his beloved family. Grief-stricken and fueled by vengeance, Glass treks through the wintry terrain to track down John Fitzgerald (Tom Hardy), the former confidant who betrayed and abandoned him.</p>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="ZHkCdsW_42I" data-toggle="modal" data-target="#trailer">
+    <img src="http://goo.gl/iuh1CN" width="220" height="342">
+    <h2>Akira</h2>
+    <p>121 minutes</p>
+    <p style="text-align:justify">In 1988 the Japanese government drops an atomic bomb on Tokyo after ESP experiments on children go awry. In 2019, 31 years after nuking the city, Kaneda, a bike gang leader, tries to save his friend Tetsuo from a secret government project. He battles against anti-government activists, greedy politicians, irresponsible scientists and a powerful military leader until Tetsuo's supernatural power suddenly manifest. A final battle is fought in Tokyo Olympiad exposing the experiment's secrets.</p>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="HT3RaamnWYM" data-toggle="modal" data-target="#trailer">
+    <img src="http://goo.gl/uEtjdX" width="220" height="342">
+    <h2>Fight Club</h2>
+    <p>139 minutes</p>
+    <p style="text-align:justify">A depressed man (Edward Norton) suffering from insomnia meets a strange soap salesman named Tyler Durden (Brad Pitt) and soon finds himself living in his squalid house after his perfect apartment is destroyed. The two bored men form an underground club with strict rules and fight other men who are fed up with their mundane lives. Their perfect partnership frays when Marla (Helena Bonham Carter), a fellow support group crasher, attracts Tyler's attention.</p>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="_GnV2u30oOU" data-toggle="modal" data-target="#trailer">
+    <img src="http://goo.gl/07yvXO" width="220" height="342">
+    <h2>Pineapple Express</h2>
+    <p>112 minutes</p>
+    <p>Stoner Dale Denton's (Seth Rogen) enjoyment of a rare strain of marijuana may prove fatal when he drops his roach in a panic after witnessing a murder. Upon learning that the fancy weed can be traced back to them, Dale and his dealer (James Franco) go on the lam, with a dangerous drug lord (Gary Cole) and crooked cop (Rosie Perez) hot on their heels.</p>
+</div>
+
+<div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="VK-LqFFPsGA" data-toggle="modal" data-target="#trailer">
+    <img src="http://goo.gl/6RET2K" width="220" height="342">
+    <h2>The Raid II</h2>
+    <p>150 minutes</p>
+    <p>After surviving a bloody fight with powerful gangsters, rookie Jakarta cop Rama (Iko Uwais) thinks he can resume a normal life. However, his exploits during that fateful incident have attracted the attention of criminals even more deadly than the last. His family at risk, Rama has no choice but to go under cover. He gets himself thrown in prison, where he befriends the son of a prominent crime kingpin. Rama must lay his own life on the line to finally destroy the criminal empire.</p>
+</div>
+
+    </div>
+  </body>
+</html>

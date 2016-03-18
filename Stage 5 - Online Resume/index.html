@@ -1,137 +1,349 @@
 <!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<meta name="author" content="Chanceller Rodnez">
+		<meta name="description" content="Final Project for Udacity's 'Intro to Programming' Nano-degree course">
+		<style>
+			@font-face {
+				font-family: 'Josefin Sans';
+				font-style: normal;
+				font-weight: 400;
+				src: src: local('Josefin Sans'), local('JosefinSans'), url(https://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5j0LW-43aMEzIO6XUTLjad8.woff2) format('woff2');
+			}
+			@font-face {
+				font-family: 'Josefin Sans';
+				font-style: normal;
+				font-weight: 700;
+				src: local('Josefin Sans'), local('JosefinSans'), url(https://fonts.gstatic.com/s/josefinsans/v9/xgzbb53t8j-Mo-vYa23n5ugdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+			}
+			* {
+				margin:0;
+				padding:0;
+			}
+			body {
+				font-family: "Josefin Sans", sans-serif;
+				font-size: 18px;
+			}
+			#main {
+				max-width: 1250px;
+				margin: 0 auto;
+				border-top: 5px solid rgb(55,160,860);
+				border-bottom: 5px solid rgb(55,160,860);
+			}
+			.clearfix {
+				overflow: auto;
+			}
+			h1 {
+				display: inline;
+				font-size: 40px;
+				line-height: 48px;
+			}
+			h2 {
+				padding: 10px;
+				font-weight: bold;
+				font-size: 24px;
+				line-height: 29px;
+			}
+			h3 {
+				font-style: italic;
+				font-size: 20px;
+				line-height: 22px;
+			}
+			h4 {
+				font-weight: bold;
+				font-size: 14px;
+				line-height: 17px;
+			}
+			p {
+				font-size: 14px;
+				line-height: 21px;
+			}
+			a {
+				display: block;
+				margin-top: 10px;
+				color: #1199C3;
+				text-decoration: none;
+			}
+			ul {
+				list-style-type: none;
+			}
+			img {
+				margin: 0 10px;
+			}
+			span {
+				padding: 5px;
+			}
+			.flex-box {
+				display: -webkit-flex;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				justify-content: space-around;
+				padding: 10px;
+			}
+			.location-text {
+				float: right;
+				font-style: italic;
+				font-size: 14px;
+				line-height: 16px;
+			}
+			.date-text {
+				font-style: italic;
+				font-family: serif;
+				font-size: 14px;
+				line-height: 18px;
+			}
+			.grey-text {
+				color: #1e90ff;
+			}
+			.lt-grey-bg {
+				background-color: rgba(237,237,237,0.5);
+			}
 
-<!--
-This is an HTML document. It contains information about how elements in the website
-are arranged. In other words, it describes the layout of a website.
 
-I can't wait to see the resumes you put together!
+			/* Specific Stylings */
+			#name {
+				font-size: 70px;
+			}
+			span#role {
+				margin-left: 10px;
+				font-family: Josefin Sans, sans-serif;
+				font-size: 40px;
+				font-style: italic;
+			}
+			nav {
+				position: fixed;
+				top: 5px;
+				right: 0px;
+				width: 200px;
+				padding-bottom: 10px;
+				text-align: center;
+				color: #1199C3;
+				background-color: #000000;
+			}
+			nav i:hover {
+				cursor: pointer;
+				color: #ffffff;
+			}
+			nav ul {
+				display: none;
+			}
+			nav a:hover {
+				color: white;
+			}
+			#nav-icon {
+				font-size: 36px;
+			}
+			#header {
+				padding: 35px 10px 0 10px;
+			}
+			#topContacts {
+				margin: 5px 0 50px 0;
+				border-top: 1px solid #000000;
+				border-bottom: 1px solid #000000;
+				line-height: 25px;
+			}
+			.biopic {
+				float: left;
+				width: 200px;
+				margin: 0 50px 50px 0;
+				background-color: #ffffff;
+			}
+			.welcome-message {
+				font-family: Josefin Sans, sans-serif;
+				font-style: italic;
+				font-weight: bold;
+				font-size: 30px;
+			}
 
-Cameron Pittman, Udacity Course Developer
--->
+			/* Avoids using display:none to assist screen readers */
+			#skillsH3 {
+				font-family: Josefin Sans, sans-serif;
+				position: absolute;
+				z-index: -1;
+				color: #ffffff;
+			}
+			#skills {
+				margin: 40px 0 50px 0;
+				font-family: Josefin Sans, sans-serif;
+				font-size: 26px;
+				font-style: italic;
+				font-weight: bold;
+				line-height: 40px;
+			}
+			#skills i {
+				padding: 0 5px 0 15px;
+			}
+			#workExperience, #projects, #education, #mapDiv {
+				margin: 0 10px 35px 10px;
+				padding-bottom: 1px;
+			}
+			#workExperience {
+				margin-top: 35px;
+			}
+			.work-entry, .project-entry, .education-entry {
+				margin: auto 10px 25px 10px;
+			}
+			#education h3 {
+				margin: 50px 10px 0 10px;
+			}
+			.project-entry {
+				text-align: center;
+			}
+			#projects img {
+				width: 197px;
+				height: 148px;
+				margin: 10px 50px;
+			}
+			/* Adjusts Online Classes header */
+			.education-entry > :nth-child(3) {
+				font-size: 14px;
+				font-weight: bold;
+			}
+			#map {
+				display: block;
+				height: 100%;
+				margin-right: 20px;
+			}
+			#mapDiv {
+				width: 100%;
+				height: 400px;
+				padding-bottom: 5%;
+			}
+			#letsConnect {
+					text-align: center;
+			}
+			#footerContacts {
+				border-top: solid 1px #000000;
+				margin: 0 10px 0 10px;
+				line-height: 25px;
+			}
 
-<!--
-The <head> of a website generally links to important resources the page will
-need to load. You'll see a lot of <link>s to CSS files for styles and
-<scripts> for JavaScript files to build interactions.
--->
-<head>
-  <!-- This tells the browser how to read the document. -->
-  <meta charset="utf-8">
+			/* Adjustments for different screen sizes. */
+			@media only screen and (max-width: 1024px) {
+				#letsConnect {
+					margin-top: 60px;
+				}
+			}
+			@media only screen and (max-width:900px) {
+				.biopic {
+					width: 175px;
+					background-color: #1e90ff;
+				}
+				.welcome-message {
+					font-size: 28px;
+				}
+			}
+			@media only screen and (max-width: 750px) {
+				#name {
+					font-size: 55px;
+				}
+				span#role {
+					margin-left: 10px;
+					font-size: 20px;
+				}
+				#topContacts {
+					margin: 0;
+				}
+				.biopic {
+					display: none;
+				}
+				.welcome-message {
+					display: none;
+				}
+				.skills-box {
+					max-width: 100%;
+					background-image: url("http://i.imgur.com/Pvz0Yj5.png");
+					background-repeat: no-repeat;
+					background-size: cover;
+					overflow: hidden;
+				}
+				#skills {
+					width: 300px;
+					margin: 5px auto 5px auto;
+					padding: 45px 0 45px 0;
+					font-size: 26px;
+					font-style: italic;
+					font-weight: bold;
+				}
+				#footerContacts {
+					margin: 0 0px 0 0px;
+					line-height: 25px;
+					border-top: solid 1px #000000;
+				}
+			}
+			@media only screen and (min-width: 750px) {
+				.biopic {
+					display: block;
+				}
+			}
+			@media only screen and (max-width: 470px) {
+				#name {
+					font-size: 40px;
+				}
+				span#role {
+					margin-left: 10px;
+					font-size: 20px;
+				}
+				#skills {
+					font-size: 20px;
+				}
+				#mapDiv {
+					width: 100%;
+					height: 300px;
+					padding-bottom: 5%;
+				}
+			}
+			@media only screen and (max-width: 399px) {
+				#letsConnect {
+					margin-top: 100px;
+				}
+			}
+		</style>
+		<title>Chanceller's Resume</title>
+	</head>
+	<body>
+		<div id="main">
 
-  <!-- Tells the browser what the title of this page should be. -->
-  <title>Chanceller's Resumé</title>
+			<!-- Pop-up navigation menu -->
+			<nav><span id="nav-icon">&#x021D5;</span>
+				<ul>
+					<li><a href="#workExperience">Experience</a></li>
+					<li><a href="#projects">Projects</a></li>
+					<li><a href="#education">Education</a></li>
+					<li><a href="#mapDiv">Places</a></li>
+					<li><a href="#main">TOP</a></li>
+				</ul>
+			</nav>
 
-  <!-- Load the page styles. -->
-  <link href="css/style.css" rel="stylesheet" type="text/css">
+			<!-- Site skeleton -->
+			<div id="header" class="center-content clearfix">
+				<ul id="topContacts" class='flex-box'></ul>
+			</div>
+			<div id="workExperience" class='lt-grey-bg'>
+				<h2>Work Experience</h2>
+			</div>
+			<div id="projects">
+				<h2>Projects</h2>
+			</div>
+			<div id="education" class='lt-grey-bg'>
+				<h2>Education</h2>
+			</div>
+			<div id="mapDiv">
+				<h2>Where I've Lived and Worked</h2>
+			</div>
+			<div id="letsConnect">
+				<h2>Let's Connect</h2>
+				<ul id="footerContacts" class="flex-box"></ul>
+			</div>
+		</div>
 
-  <!--
-  jQuery is a common JavaScript library for reading and making changes to the
-  Document Object Model (DOM). The DOM is a tree that contains information
-  about what is actually visible on a website.
+		<!-- Uncomment for production release -->
+		<script src="js/jquery_v2.1.4.js"></script>
+		<script src="js/helper.js"></script>
+		<script src="js/resumeBuilder.js"></script>
 
-  While HTML is a static document, the browser converts HTML to the
-  DOM and the DOM can change. In fact, JavaScript's power comes from
-  its ability to manipulate the DOM, which is essentially a JavaScript
-  object. When JavaScript makes something interesting happen on a
-  website, it's likely the action happened because JavaScript changed
-  the DOM. jQuery is fast and easy to use, but it doesn't do anything
-  you can't accomplish with vanilla (regular) JavaScript.
-  -->
-  <script src="js/jQuery.js"></script>
-
-  <!-- More on helper.js in the class -->
-  <script src="js/helper.js"></script>
- 
-  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places"></script>
-
-  <meta name="viewport" content="width=device-width">
-  
-  <link href='https://fonts.googleapis.com/css?family=Alegreya+Sans' rel='stylesheet' type='text/css'>
-</head>
-<body unresolved>
-  <div id="main">
-    
-    <!--
-    Everything from here to the <script> tag below is the skeleton of your
-    website. Your code will add information to each of the sections of the
-    resume below. You can pretty easily figure out what each section will
-    display by looking at the id or at what's written between the <h2> tags.
-    -->
-    <div id="header" class="center-content clearfix">
-      <ul id="topContacts" class='flex-box'></ul>
-    </div>
-    <div style='clear: both;'></div>
-    <div id="workExperience" class='gray'>
-      <h2>Work Experience</h2>
-    </div>
-    <div id="projects">
-      <h2>Projects</h2>
-    </div>
-    <div id="education" class='gray'>
-      <h2>Education</h2>
-    </div>
-    <div id="mapDiv">
-      <h2>Where I've Lived and Worked</h2>
-    </div>
-    <div id="letsConnect" class='dark-gray'>
-      <h2 class='orange center-text'>Let's Connect</h2>
-        <ul id="footerContacts" class="flex-box">
-      </ul>
-    </div>
-  </div>
-
-  <!--
-  The next line tells the browser where to download the JavaScript file you'll be
-  writing. In resumeBuilder.js, you'll be writing code that builds the resume
-  dynamically when this website, index.html, is opened.
-  -->
-  <script src="js/resumeBuilder.js"></script>
-
-
-  <!--
-  These scripts are written in JavaScript. You'll be breaking them down as part of
-  a quiz. Essentially, the next few lines are checking to see if you have not
-  changed each section of the resume. If you have not made any changes to a section
-  of the resume, then that part of the resume does not show up. More on this in the
-  course.
-  -->
-
-  <script type="text/javascript">
-    // Notice how all of a sudden there's JavaScript inside this HTML
-    // document? You can write JavaScript between <script> tags. At the end of your
-    // JavaScript, don't forget the closing script tag with the slash (/).
-
-
-    // Also, this is a JavaScript style comment. You can comment in JavaScript with:
-
-    //   two slashes for all following characters on a single line, or
-
-    /*
-        an opening and closing set of slash asterisks for block comments.
-    */
-
-/*
-    if(document.getElementsByClassName('flex-item').length === 0) {
-      document.getElementById('topContacts').style.display = 'none';
-    }
-    if(document.getElementsByTagName('h1').length === 0) {
-      document.getElementById('header').style.display = 'none';
-    }
-    if(document.getElementsByClassName('work-entry').length === 0) {
-      document.getElementById('workExperience').style.display = 'none';
-    }
-    if(document.getElementsByClassName('project-entry').length === 0) {
-      document.getElementById('projects').style.display = 'none';
-    }
-    if(document.getElementsByClassName('education-entry').length === 0) {
-      document.getElementById('education').style.display = 'none';
-    }
-    if(document.getElementsByClassName('flex-item').length === 0) {
-      document.getElementById('letsConnect').style.display = 'none';
-    }
-    if(document.getElementById('map') === null) {
-      document.getElementById('mapDiv').style.display = 'none';
-    } */
-  </script>
-</body>
+	</body>
 </html>
